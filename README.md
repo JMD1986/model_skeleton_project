@@ -8,12 +8,14 @@ The following are questions and how I answered them in Ruby.
 
 How many users are there?
 
+`
  User.last.id
 => 50
+`
 
 What are the 5 most expensive items?
 
-'[43] pry(main)> Item.order('price DESC').limit(5)
+`[43] pry(main)> Item.order('price DESC').limit(5)
 => [#<Item:0x007fae38cd15e8
   id: 25,
   title: "Small Cotton Gloves",
@@ -38,12 +40,12 @@ What are the 5 most expensive items?
   title: "Ergonomic Steel Car",
   category: "Books & Outdoors",
   description: "Enterprise-wide secondary firmware",
-  price: 9341>]'
+  price: 9341>]`
 
 What’s the cheapest book?
 
-'Item.where(category: 'Books').order("price ASC").first
-=> #<Item:0x007fae38e33698 id: 76, title: "Ergonomic Granite Chair", category: "Books", description: "De-engineered bi-directional portal", price: 1496>'
+`Item.where(category: 'Books').order("price ASC").first
+=> #<Item:0x007fae38e33698 id: 76, title: "Ergonomic Granite Chair", category: "Books", description: "De-engineered bi-directional portal", price: 1496>`
 
 Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
 
