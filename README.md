@@ -17,10 +17,4 @@ This project is an exercise in using existing frameworks and using ActiveRecord.
 └── lib                 # Your ruby code (models, etc.) should go here
     └── all.rb          # Require this file to auto-require _all_ `.rb` files in `lib`
 ```
-# Model-skeleton-and-active-record-project
-# Model-skeleton-and-active-record-project
-# Model-skeleton-and-active-record-project
-# model-skeleton-project
-# model-skeleton-project
-# model_skeleton_project
-# model_skeleton_project
+
