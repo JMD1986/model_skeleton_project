@@ -23,8 +23,11 @@ A user ID is given to each person in the user class. 50 ids for 50 folks.
 By arranging for the order of the items to be decending we get the most expensive first. By limiting it to 5 we just get the top five.
 
 
-`[43] pry(main)> Item.order('price DESC').limit(5)
-=> [#<Item:0x007fae38cd15e8
+`Item.order('price DESC').limit(5)`
+
+gives us
+
+`=> [#<Item:0x007fae38cd15e8
   id: 25,
   title: "Small Cotton Gloves",
   category: "Automotive, Shoes & Beauty",
@@ -50,22 +53,35 @@ By arranging for the order of the items to be decending we get the most expensiv
   description: "Enterprise-wide secondary firmware",
   price: 9341>]`
 
-We get a collection of five somewhat peculiar items. These seem to have been created by a some kind of random-useless-shit generator. But then again I have been waiting my entire life for a wooden hat.
+We get a collection of five somewhat peculiar items. These seem to have been
+created by a some kind of random-useless-shit generator. But then again
+I have been waiting my entire life for a wooden hat.
 
 ####3) What’s the cheapest book?
 
-lets use the where method to make sure we only get books and then arrange them with their prices ascending. lastly we will just get the first to make sure we arent wasting time.
+lets use the where method to make sure we only get books and then arrange
+them with their prices ascending. lastly we will just get the first to make
+sure we arent wasting time.
 
-`Item.where(category: 'Books').order("price ASC").first
+`Item.where(category: 'Books').order("price ASC").first`
+
+returns
+
+`
 => #<Item:0x007fae38e33698 id: 76, title: "Ergonomic Granite Chair", category: "Books", description: "De-engineered bi-directional portal", price: 1496>`
 
-And orgonomic granite chair! Also, its a book! Also its 1476 which I take to me $14.76. Thats a killer deal. Gimme a dozen!
+And orgonomic granite chair! Also, its a book! Also its 1476 which I take to
+me $14.76. Thats a killer deal. Gimme a dozen!
 
 ####4) Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
 
 We will use the find_by method to locate the user id by searching for the street.
 
-`Address.find_by street: '6439 Zetta Hills'` gives us a user_id of 40. If we enter
+`Address.find_by street: '6439 Zetta Hills'` gives us
+
+`=> #<Address:0x007fe202c0da00 id: 43, user_id: 40, street: "6439 Zetta Hills", city: "Willmouth", state: "WY", zip: 15029>`
+
+this has user_id of 40. If we enter
 
 `User.find_by id: 40`
 
@@ -74,18 +90,33 @@ This returns
 `<User:0x007f9cc205a710 id: 40, first_name: "Corrine", last_name: "Little", email: "rubie_kovacek@grimes.net">
 [6] pry(main)> `
 
-We now know miss Corrine Littles email, full name, and address! Lets hope software engineers are employing proper safety protocals and not just leaving this stuff out in public. With a little legwork anyone could find out she our dear Corrine has an Awesome Concrete Chair.
+this only tells us if she has one address. Instead lets use the where method and type
+
+`Address.where(user_id: 40)`
+
+much better. we get two addresses now
+
+`=> [#<Address:0x007fe202253c30 id: 43, user_id: 40, street: "6439 Zetta Hills", city: "Willmouth", state: "WY", zip: 15029>,
+ #<Address:0x007fe202253ac8 id: 44, user_id: 40, street: "54369 Wolff Forges", city: "Lake Bryon", state: "CA", zip: 31587>]`
+
+
+We now know miss Corrine Littles email, full name, and address!
+Lets hope software engineers are employing proper safety protocals
+and not just leaving this stuff out in public. With a little legwork
+anyone could find out she our dear Corrine has an Awesome Concrete Chair.
 
 
 ####5) Correct Virginie Mitchell’s address to “New York, NY, 10108”.
 
 First lets use the find_by method to look through our list of users for this totally not made up name.
 
+we can use where for this
+
 `
-User.find_by first_name: 'Virginie'
+User.where(first_name: "Virginie")
 `
 
-this returns
+they both return.
 
 `#<User:0x007f9cc15af220 id: 39, first_name: "Virginie", last_name: "Mitchell", email: "daisy.crist@altenwerthmonahan.biz">
 [9] pry(main)>
@@ -93,21 +124,38 @@ this returns
 
 Now we know her user id number. With that info we can change the specifics of her address.
 
-`[36] pry(main)> address = Address.find_by(id: 39)
-=> #<Address:0x007fae38e33080 id: 39, user_id: 37, street: "7503 Cale Grove", city: "Robertoshire", state: "PA", zip: 49744>
-[38] pry(main)> address.state = 'NY'
-=> "NY"
-[39] pry(main)> address.city = 'New York'
-=> "New York"
-[40] pry(main)> address.zip = 10108
-=> 10108
-[41] pry(main)> address.save
-=> true
-[42] pry(main)> Address.find_by(id: 39)
-=> #<Address:0x007fae38d91f00 id: 39, user_id: 37, street: "7503 Cale Grove", city: "New York", state: "NY", zip: 10108>
-[43] pry(main)>`
+`
+Address.where(user_id: 39)
+`
+we get an array of two addresses.
 
-This is not the prettiest way to change amounts but it makes what we are doing the easiest to read.
+`
+=> [#<Address:0x007fe202e615e0 id: 41, user_id: 39, street: "12263 Jake Crossing", city: "New York", state: "NY", zip: 10108>,
+ #<Address:0x007fe202e61478 id: 42, user_id: 39, street: "83221 Mafalda Canyon", city: "Bahringerland", state: "WY", zip: 24028>]
+`
+originally I had done the find_by method and only located one address.
+I updated it with the following code. I WOULD NOT DO THIS IN THE FUTURE.
+
+# `address = Address
+
+# => #<Address:0x007fae38e33080 id: 39, user_id: 37, street: "7503 Cale Grove", city: "Robertoshire", state: "PA", zip: 49744>
+# [38] pry(main)> address.state = 'NY'
+# => "NY"
+# [39] pry(main)> address.city = 'New York'
+# => "New York"
+# [40] pry(main)> address.zip = 10108
+# => 10108
+# [41] pry(main)> address.save
+# => true
+# [42] pry(main)> Address.find_by(id: 39)
+# => #<Address:0x007fae38d91f00 id: 39, user_id: 37, street: "7503 Cale Grove", city: "New York", state: "NY", zip: 10108>
+# [43] pry(main)>`
+
+Not only was the find_by method not a good way to go about it but that is a
+pretty ineffecient way to update several things at once. It also looks like my
+database has been changed since then.
+
+I should have used update and where.
 
 ####6) How much would it cost to buy one of each tool?
 
@@ -130,10 +178,12 @@ we get a list of the items that are tools. Tremendous! a practical rubber shirt 
   description: "Operative mission-critical emulation",
   price: 5437>,`
 
-  are there more tools though? if we search using the category LIKE ? method and change our terms we get more answers.
+  are there more tools though? if we search using the category LIKE ?
+  method and change our terms we get more answers.
 
 
-if we wanted the other categories that just contained the words tool we could have gone with
+if we wanted the other categories that just contained
+  the words tool we could have gone with
 
 
   `item.where("category LIKE ?", "tool%")`
@@ -204,6 +254,7 @@ we get
 => 24605
 `
 
+246 dollars is a sweet deal for all that swag.
 
 ####7) How many total items did we sell?
 
@@ -222,8 +273,36 @@ This is the easiest way I know how to do things.
 
 ####8) How much was spent on books?
 
-`
-I don't even know how to start on this.
-`
+I know its join method but I am not clear on that just yet.
+
 ####9) Simulate buying an item by inserting a User for yourself and an Order for that User.
 
+use create method to make a new user and an awesome email to get all the ladies.
+
+`
+User.create(first_name: "John", last_name: "Daugherty",
+email: "getsalltheladies@studmuffin.net")
+`
+
+we return
+
+`
+=> #<User:0x007fcf22c3ec60 id: 51, first_name: "John", last_name: "Daugherty", email: "getsalltheladies@studmuffin.net">
+`
+id number 51
+
+lets make a new order
+
+`
+Order.new(user_id: 51, item_id: 89, quantity: 1200,
+created_at: Time.now)
+`
+I need twelve hundred Gorgeous Granite Shoes. Rush delivery if available.
+
+our results returned
+
+`
+=> #<Order:0x007fcf23035b48 id: nil, user_id: 51, item_id: 89, quantity: 1200, created_at: 2015-05-28 08:41:25 -0400>
+`
+
+we didnt return an id.... hmm...ß
