@@ -1,12 +1,14 @@
 #This project is an exercise in using existing frameworks and using ActiveRecord.
 
-##The first part of the project involved establishing models so thatwe could use ActiveRecord to go over a dataset we had used previously. The next part of the project was determing which ActiveRecord queries to use to solve a set of problems.
+##The first part of the project involved establishing models so that we could use ActiveRecord to go over
+##a dataset we had used previously.
+##The next part of the project was determing which ActiveRecord queries to use to solve a set of problems.
 
-Once we got out layout working we could run our console file and ask it questions.
+Once we got out layout working we could run our console.rb file and ask it questions.
 
 The following are questions and how I answered them in Ruby.
 
-####How many users are there?
+####1) How many users are there?
 
 `
  User.last.id
@@ -16,7 +18,7 @@ The following are questions and how I answered them in Ruby.
 A user ID is given to each person in the user class.
 
 
-####What are the 5 most expensive items?
+####2) What are the 5 most expensive items?
 
 `[43] pry(main)> Item.order('price DESC').limit(5)
 => [#<Item:0x007fae38cd15e8
@@ -45,14 +47,16 @@ A user ID is given to each person in the user class.
   description: "Enterprise-wide secondary firmware",
   price: 9341>]`
 
-  By asking for the
+  By asking for the order of the items by decending we get the most expensive first. By limiting it to 5 we just get the top five.
 
-####What’s the cheapest book?
+####3) What’s the cheapest book?
 
 `Item.where(category: 'Books').order("price ASC").first
 => #<Item:0x007fae38e33698 id: 76, title: "Ergonomic Granite Chair", category: "Books", description: "De-engineered bi-directional portal", price: 1496>`
 
-####Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
+Here we use the same technique for the opposite approach only we are specifying an actual category.
+
+####4)Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
 
 `Address.find_by street: '6439 Zetta Hills'` gives us a user_id of 40. If we enter
 
@@ -65,7 +69,7 @@ This returns
 
 If she has another address I cant figure out how to get it :-/
 
-####Correct Virginie Mitchell’s address to “New York, NY, 10108”.
+####5)Correct Virginie Mitchell’s address to “New York, NY, 10108”.
 
 First I found her ID
 
@@ -95,7 +99,9 @@ then I changed her Address the following way
 => #<Address:0x007fae38d91f00 id: 39, user_id: 37, street: "7503 Cale Grove", city: "New York", state: "NY", zip: 10108>
 [43] pry(main)>`
 
-####How much would it cost to buy one of each tool?
+This is not the prettiest way to change amounts but it makes what we are doing the easiest to read.
+
+####6)How much would it cost to buy one of each tool?
 
 `[23] pry(main)> Item.where(category: 'Tools')
 => [#<Item:0x007fae39137268
@@ -111,15 +117,19 @@ then I changed her Address the following way
   description: "Operative mission-critical emulation",
   price: 5437>,`
 
-####How many total items did we sell?
+  This however only gives us the two results and not the sum of them..
+
+####7)How many total items did we sell?
 
 `pry(main)> Order.last.id
 => 377`
 
-####How much was spent on books?
+This is the easiest way I know how to do things.
+
+####8)How much was spent on books?
 
 `
 I don't even know how to start on this.
 `
-####Simulate buying an item by inserting a User for yourself and an Order for that User.
+####9)Simulate buying an item by inserting a User for yourself and an Order for that User.
 
