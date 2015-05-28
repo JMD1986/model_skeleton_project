@@ -1,4 +1,4 @@
-This project is an exercise in using existing frameworks and using ActiveRecord.
+#This project is an exercise in using existing frameworks and using ActiveRecord.
 
 The first part of the project involved establishing models so thatwe could use ActiveRecord to go over a dataset we had used previously. The next part of the project was determing which ActiveRecord queries to use to solve a set of problems.
 
@@ -12,6 +12,9 @@ How many users are there?
  User.last.id
 => 50
 `
+
+A user ID is given to each person in the user class.
+
 
 What are the 5 most expensive items?
 
@@ -49,16 +52,36 @@ What’s the cheapest book?
 
 Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
 
-`Address.find_by street: '6439 Zetta Hills'` give's us a user_id of 40
-If she has another address I can't figure out how to get it :-/
+`Address.find_by street: '6439 Zetta Hills'` give's us a user_id of 40. If we enter
 
-edit: at some point my user id's changed :-/
+`User.find_by id: 40`
+
+This returns
+
+`<User:0x007f9cc205a710 id: 40, first_name: "Corrine", last_name: "Little", email: "rubie_kovacek@grimes.net">
+[6] pry(main)> `
+
+If she has another address I can't figure out how to get it :-/
 
 Correct Virginie Mitchell’s address to “New York, NY, 10108”.
 
-First I found her ID then I changed her Address the following way
+First I found her ID
 
-`[36] pry(main)> address = Address.find_by(id: 39)
+`
+User.find_by first_name: 'Virginie'
+`
+
+this returns
+
+`
+#<User:0x007f9cc15af220 id: 39, first_name: "Virginie", last_name: "Mitchell", email: "daisy.crist@altenwerthmonahan.biz">
+[9] pry(main)>
+`
+
+then I changed her Address the following way
+
+`
+[36] pry(main)> address = Address.find_by(id: 39)
 => #<Address:0x007fae38e33080 id: 39, user_id: 37, street: "7503 Cale Grove", city: "Robertoshire", state: "PA", zip: 49744>
 [38] pry(main)> address.state = 'NY'
 => "NY"
