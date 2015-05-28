@@ -1,12 +1,12 @@
 #This project is an exercise in using existing frameworks and using ActiveRecord.
 
-The first part of the project involved establishing models so thatwe could use ActiveRecord to go over a dataset we had used previously. The next part of the project was determing which ActiveRecord queries to use to solve a set of problems.
+##The first part of the project involved establishing models so thatwe could use ActiveRecord to go over a dataset we had used previously. The next part of the project was determing which ActiveRecord queries to use to solve a set of problems.
 
 Once we got out layout working we could run our console file and ask it questions.
 
 The following are questions and how I answered them in Ruby.
 
-How many users are there?
+####How many users are there?
 
 `
  User.last.id
@@ -16,7 +16,7 @@ How many users are there?
 A user ID is given to each person in the user class.
 
 
-What are the 5 most expensive items?
+####What are the 5 most expensive items?
 
 `[43] pry(main)> Item.order('price DESC').limit(5)
 => [#<Item:0x007fae38cd15e8
@@ -47,12 +47,12 @@ What are the 5 most expensive items?
 
   By asking for the
 
-What’s the cheapest book?
+####What’s the cheapest book?
 
 `Item.where(category: 'Books').order("price ASC").first
 => #<Item:0x007fae38e33698 id: 76, title: "Ergonomic Granite Chair", category: "Books", description: "De-engineered bi-directional portal", price: 1496>`
 
-Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
+####Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
 
 `Address.find_by street: '6439 Zetta Hills'` gives us a user_id of 40. If we enter
 
@@ -65,7 +65,7 @@ This returns
 
 If she has another address I cant figure out how to get it :-/
 
-Correct Virginie Mitchell’s address to “New York, NY, 10108”.
+####Correct Virginie Mitchell’s address to “New York, NY, 10108”.
 
 First I found her ID
 
@@ -95,7 +95,7 @@ then I changed her Address the following way
 => #<Address:0x007fae38d91f00 id: 39, user_id: 37, street: "7503 Cale Grove", city: "New York", state: "NY", zip: 10108>
 [43] pry(main)>`
 
-How much would it cost to buy one of each tool?
+####How much would it cost to buy one of each tool?
 
 `[23] pry(main)> Item.where(category: 'Tools')
 => [#<Item:0x007fae39137268
@@ -111,14 +111,15 @@ How much would it cost to buy one of each tool?
   description: "Operative mission-critical emulation",
   price: 5437>,`
 
-How many total items did we sell?
+####How many total items did we sell?
 
 `pry(main)> Order.last.id
 => 377`
 
-How much was spent on books?
+####How much was spent on books?
+
 `
 I don't even know how to start on this.
 `
-Simulate buying an item by inserting a User for yourself and an Order for that User.
+####Simulate buying an item by inserting a User for yourself and an Order for that User.
 
