@@ -272,15 +272,16 @@ This is the easiest way I know how to do things.
 
 ####8) How much was spent on books?
 
-I know its join method but I am not clear on that just yet.
+book order = Item.joins('JOIN orders ON orders.item_id = items.id').where(category: 'Books')
+
+book_orders.sum('price * quantity')
 
 ####9) Simulate buying an item by inserting a User for yourself and an Order for that User.
 
 use create method to make a new user and an awesome email to get all the ladies.
 
 `
-User.create(first_name: "John", last_name: "Daugherty",
-email: "getsalltheladies@studmuffin.net")
+User.create(first_name: "John", last_name: "Daugherty", email: "getsalltheladies@studmuffin.net")
 `
 
 we return
@@ -293,8 +294,7 @@ id number 51
 lets make a new order
 
 `
-Order.new(user_id: 51, item_id: 89, quantity: 1200,
-created_at: Time.now)
+Order.new(user_id: 51, item_id: 89, quantity: 1200, created_at: "")
 `
 I need twelve hundred Gorgeous Granite Shoes. Rush delivery if available.
 
