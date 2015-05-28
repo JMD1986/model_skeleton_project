@@ -74,7 +74,7 @@ This returns
 `<User:0x007f9cc205a710 id: 40, first_name: "Corrine", last_name: "Little", email: "rubie_kovacek@grimes.net">
 [6] pry(main)> `
 
-We now know miss Corrine Littles email, full name, and address! Lets hope software engineers are employing property safety protocals and not just leaving this stuff out in public. With a little legwork anyone could find out she our dear Corrine has an Awesome Concrete Chair.
+We now know miss Corrine Littles email, full name, and address! Lets hope software engineers are employing proper safety protocals and not just leaving this stuff out in public. With a little legwork anyone could find out she our dear Corrine has an Awesome Concrete Chair.
 
 
 ####5) Correct Virginie Mitchell’s address to “New York, NY, 10108”.
@@ -115,7 +115,7 @@ If we call where on the item class for the category like so:
 
 `[23] pry(main)> Item.where(category: 'Tools')`
 
-we get a list of the items that are tools. Tremendous! a practical rubbert shirt and incredible plastic gloves.
+we get a list of the items that are tools. Tremendous! a practical rubber shirt and incredible plastic gloves.
 
 `=> [#<Item:0x007fae39137268
   id: 32,
@@ -130,13 +130,93 @@ we get a list of the items that are tools. Tremendous! a practical rubbert shirt
   description: "Operative mission-critical emulation",
   price: 5437>,`
 
-  This however only gives us the two results and not the sum of them.
-  If we wish to add the results together we can use the sum method.
+  are there more tools though? if we search using the category LIKE ? method and change our terms we get more answers.
+
+
+if we wanted the other categories that just contained the words tool we could have gone with
+
+
+  `item.where("category LIKE ?", "tool%")`
+
+  this returns
+
+  `
+  => [#<Item:0x007f9cc133a8a0
+  id: 32,
+  title: "Practical Rubber Shirt",
+  category: "Tools",
+  description: "De-engineered multimedia info-mediaries",
+  price: 1107>,
+ #<Item:0x007f9cc133a6e8
+  id: 50,
+  title: "Gorgeous Rubber Chair",
+  category: "Tools, Garden & Movies",
+  description: "Triple-buffered even-keeled capability",
+  price: 3335>,
+ #<Item:0x007f9cc133a580
+  id: 51,
+  title: "Rustic Steel Shirt",
+  category: "Tools, Clothing & Toys",
+  description: "Proactive incremental attitude",
+  price: 615>,
+ #<Item:0x007f9cc133a418
+  id: 59,
+  title: "Fantastic Granite Computer",
+  category: "Tools, Jewelery & Industrial",
+  description: "Integrated context-sensitive matrices",
+  price: 7606>,
+ #<Item:0x007f9cc133a288
+  id: 64,
+  title: "Gorgeous Plastic Computer",
+  category: "Tools, Garden & Games",
+  description: "Upgradable multi-state policy",
+  price: 1913>,
+ #<Item:0x007f9cc133a0f8
+  id: 66,
+  title: "Gorgeous Granite Car",
+  category: "Tools & Computers",
+  description: "Enhanced encompassing parallelism",
+  price: 2768>,
+ #<Item:0x007f9cc1339f90
+  id: 80,
+  title: "Incredible Plastic Gloves",
+  category: "Tools",
+  description: "Operative mission-critical emulation",
+  price: 5437>,
+ #<Item:0x007f9cc1339dd8 id: 87, title: "Awesome Plastic Shirt", category: "Tools", description: "Balanced multimedia paradigm", price: 839>,
+ #<Item:0x007f9cc1339b58
+  id: 99,
+  title: "Rustic Rubber Hat",
+  category: "Tools & Kids",
+  description: "Open-source object-oriented hierarchy",
+  price: 985>]
+  `
+  this returns us categories that just have the words tool in them.
+
+  lets add them up by calling the sum method.
+
+`
+Item.where("category LIKE ?", "tool%").sum(:price)
+`
+we get
+
+`
+=> 24605
+`
+
 
 ####7) How many total items did we sell?
 
-`pry(main)> Order.last.id
-=> 377`
+lets use the sum method on quantity within the orders class
+
+`
+Order.sum(:quantity)
+`
+this returns
+
+`
+=> 2125
+`
 
 This is the easiest way I know how to do things.
 
