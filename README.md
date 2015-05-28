@@ -108,7 +108,7 @@ anyone could find out she our dear Corrine has an Awesome Concrete Chair.
 
 ####5) Correct Virginie Mitchell’s address to “New York, NY, 10108”.
 
-First lets use the find_by method to look through our list of users for this totally not made up name.
+First lets use the where method to look through our list of users for this totally not made up name.
 
 we can use where for this
 
@@ -116,7 +116,7 @@ we can use where for this
 User.where(first_name: "Virginie")
 `
 
-they both return.
+it returns
 
 `#<User:0x007f9cc15af220 id: 39, first_name: "Virginie", last_name: "Mitchell", email: "daisy.crist@altenwerthmonahan.biz">
 [9] pry(main)>
