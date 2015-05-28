@@ -1,7 +1,6 @@
 #This project is an exercise in using existing frameworks and using ActiveRecord.
 
-##The first part of the project involved establishing models so that we could use ActiveRecord to go over
-##a dataset we had used previously.
+##The first part of the project involved establishing models so that we could use ActiveRecord to go overa dataset we had used previously.
 ##The next part of the project was determing which ActiveRecord queries to use to solve a set of problems.
 
 Once we got out layout working we could run our console.rb file and ask it questions.
