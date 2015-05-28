@@ -276,6 +276,8 @@ book order = Item.joins('JOIN orders ON orders.item_id = items.id').where(catego
 
 book_orders.sum('price * quantity')
 
+credit to alex for presenting this.
+
 ####9) Simulate buying an item by inserting a User for yourself and an Order for that User.
 
 use create method to make a new user and an awesome email to get all the ladies.
@@ -289,6 +291,7 @@ we return
 `
 => #<User:0x007fcf22c3ec60 id: 51, first_name: "John", last_name: "Daugherty", email: "getsalltheladies@studmuffin.net">
 `
+
 id number 51
 
 lets make a new order
