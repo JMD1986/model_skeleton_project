@@ -9,15 +9,19 @@ The following are questions and how I answered them in Ruby.
 
 ####1) How many users are there?
 
+we call the last method on the ID numbers in the user class.
 `
  User.last.id
 => 50
 `
 
-A user ID is given to each person in the user class.
+A user ID is given to each person in the user class. 50 ids for 50 folks.
 
 
 ####2) What are the 5 most expensive items?
+
+By arranging for the order of the items to be decending we get the most expensive first. By limiting it to 5 we just get the top five.
+
 
 `[43] pry(main)> Item.order('price DESC').limit(5)
 => [#<Item:0x007fae38cd15e8
@@ -46,16 +50,20 @@ A user ID is given to each person in the user class.
   description: "Enterprise-wide secondary firmware",
   price: 9341>]`
 
-  By asking for the order of the items by decending we get the most expensive first. By limiting it to 5 we just get the top five.
+We get a collection of five somewhat peculiar items. These seem to have been created by a some kind of random-useless-shit generator. But then again I have been waiting my entire life for a wooden hat.
 
 ####3) What’s the cheapest book?
+
+lets use the where method to make sure we only get books and then arrange them with their prices ascending. lastly we will just get the first to make sure we arent wasting time.
 
 `Item.where(category: 'Books').order("price ASC").first
 => #<Item:0x007fae38e33698 id: 76, title: "Ergonomic Granite Chair", category: "Books", description: "De-engineered bi-directional portal", price: 1496>`
 
-Here we use the same technique for the opposite approach only we are specifying an actual category.
+And orgonomic granite chair! Also, its a book! Also its 1476 which I take to me $14.76. Thats a killer deal. Gimme a dozen!
 
-####4)Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
+####4) Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
+
+We will use the find_by method to locate the user id by searching for the street.
 
 `Address.find_by street: '6439 Zetta Hills'` gives us a user_id of 40. If we enter
 
@@ -66,11 +74,12 @@ This returns
 `<User:0x007f9cc205a710 id: 40, first_name: "Corrine", last_name: "Little", email: "rubie_kovacek@grimes.net">
 [6] pry(main)> `
 
-If she has another address I cant figure out how to get it :-/
+We now know miss Corrine Littles email, full name, and address! Lets hope software engineers are employing property safety protocals and not just leaving this stuff out in public. With a little legwork anyone could find out she our dear Corrine has an Awesome Concrete Chair.
 
-####5)Correct Virginie Mitchell’s address to “New York, NY, 10108”.
 
-First I found her ID
+####5) Correct Virginie Mitchell’s address to “New York, NY, 10108”.
+
+First lets use the find_by method to look through our list of users for this totally not made up name.
 
 `
 User.find_by first_name: 'Virginie'
@@ -82,7 +91,7 @@ this returns
 [9] pry(main)>
 `
 
-then I changed her Address the following way
+Now we know her user id number. With that info we can change the specifics of her address.
 
 `[36] pry(main)> address = Address.find_by(id: 39)
 => #<Address:0x007fae38e33080 id: 39, user_id: 37, street: "7503 Cale Grove", city: "Robertoshire", state: "PA", zip: 49744>
@@ -100,10 +109,15 @@ then I changed her Address the following way
 
 This is not the prettiest way to change amounts but it makes what we are doing the easiest to read.
 
-####6)How much would it cost to buy one of each tool?
+####6) How much would it cost to buy one of each tool?
 
-`[23] pry(main)> Item.where(category: 'Tools')
-=> [#<Item:0x007fae39137268
+If we call where on the item class for the category like so:
+
+`[23] pry(main)> Item.where(category: 'Tools')`
+
+we get a list of the items that are tools. Tremendous! a practical rubbert shirt and incredible plastic gloves.
+
+`=> [#<Item:0x007fae39137268
   id: 32,
   title: "Practical Rubber Shirt",
   category: "Tools",
@@ -116,19 +130,20 @@ This is not the prettiest way to change amounts but it makes what we are doing t
   description: "Operative mission-critical emulation",
   price: 5437>,`
 
-  This however only gives us the two results and not the sum of them..
+  This however only gives us the two results and not the sum of them.
+  If we wish to add the results together we can use the sum method.
 
-####7)How many total items did we sell?
+####7) How many total items did we sell?
 
 `pry(main)> Order.last.id
 => 377`
 
 This is the easiest way I know how to do things.
 
-####8)How much was spent on books?
+####8) How much was spent on books?
 
 `
 I don't even know how to start on this.
 `
-####9)Simulate buying an item by inserting a User for yourself and an Order for that User.
+####9) Simulate buying an item by inserting a User for yourself and an Order for that User.
 
