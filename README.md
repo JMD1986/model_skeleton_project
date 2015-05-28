@@ -75,8 +75,7 @@ User.find_by first_name: 'Virginie'
 
 this returns
 
-`
-#<User:0x007f9cc15af220 id: 39, first_name: "Virginie", last_name: "Mitchell", email: "daisy.crist@altenwerthmonahan.biz">
+`#<User:0x007f9cc15af220 id: 39, first_name: "Virginie", last_name: "Mitchell", email: "daisy.crist@altenwerthmonahan.biz">
 [9] pry(main)>
 `
 
