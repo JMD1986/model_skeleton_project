@@ -45,6 +45,8 @@ What are the 5 most expensive items?
   description: "Enterprise-wide secondary firmware",
   price: 9341>]`
 
+  By asking for the
+
 What’s the cheapest book?
 
 `Item.where(category: 'Books').order("price ASC").first
@@ -52,7 +54,7 @@ What’s the cheapest book?
 
 Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
 
-`Address.find_by street: '6439 Zetta Hills'` give's us a user_id of 40. If we enter
+`Address.find_by street: '6439 Zetta Hills'` gives us a user_id of 40. If we enter
 
 `User.find_by id: 40`
 
@@ -61,7 +63,7 @@ This returns
 `<User:0x007f9cc205a710 id: 40, first_name: "Corrine", last_name: "Little", email: "rubie_kovacek@grimes.net">
 [6] pry(main)> `
 
-If she has another address I can't figure out how to get it :-/
+If she has another address I cant figure out how to get it :-/
 
 Correct Virginie Mitchell’s address to “New York, NY, 10108”.
 
@@ -80,8 +82,7 @@ this returns
 
 then I changed her Address the following way
 
-`
-[36] pry(main)> address = Address.find_by(id: 39)
+`[36] pry(main)> address = Address.find_by(id: 39)
 => #<Address:0x007fae38e33080 id: 39, user_id: 37, street: "7503 Cale Grove", city: "Robertoshire", state: "PA", zip: 49744>
 [38] pry(main)> address.state = 'NY'
 => "NY"
@@ -93,8 +94,7 @@ then I changed her Address the following way
 => true
 [42] pry(main)> Address.find_by(id: 39)
 => #<Address:0x007fae38d91f00 id: 39, user_id: 37, street: "7503 Cale Grove", city: "New York", state: "NY", zip: 10108>
-[43] pry(main)>
-`
+[43] pry(main)>`
 
 How much would it cost to buy one of each tool?
 
@@ -122,20 +122,4 @@ How much was spent on books?
 I don't even know how to start on this.
 `
 Simulate buying an item by inserting a User for yourself and an Order for that User.
-
-```
-.
-├── Gemfile             # Details which gems are required by the project
-├── README.md           # This file
-├── Rakefile            # Defines `rake generate:migration` and `db:migrate`
-├── config
-│   └── database.yml    # Defines the database config (e.g. name of file)
-├── console.rb          # `ruby console.rb` starts `pry` with models loaded
-├── db
-│   ├── dev.sqlite3     # Default location of the database file
-│   ├── migrate         # Folder containing generated migrations
-│   └── setup.rb        # `require`ing this file sets up the db connection
-└── lib                 # Your ruby code (models, etc.) should go here
-    └── all.rb          # Require this file to auto-require _all_ `.rb` files in `lib`
-```
 
