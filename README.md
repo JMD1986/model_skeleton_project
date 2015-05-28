@@ -20,7 +20,7 @@ A user ID is given to each person in the user class. 50 ids for 50 folks.
 
 ####2) What are the 5 most expensive items?
 
-By arranging for the order of the items to be decending we get the most expensive first. By limiting it to 5 we just get the top five.
+By arranging for the order of the items to be descending we get the most expensive first. By limiting it to 5 we just get the top five.
 
 
 `Item.order('price DESC').limit(5)`
@@ -70,7 +70,7 @@ returns
 `
 => #<Item:0x007fae38e33698 id: 76, title: "Ergonomic Granite Chair", category: "Books", description: "De-engineered bi-directional portal", price: 1496>`
 
-And orgonomic granite chair! Also, its a book! Also its 1476 which I take to
+And ergonomic granite chair! Also, its a book! Also its 1476 which I take to
 me $14.76. Thats a killer deal. Gimme a dozen!
 
 ####4) Who lives at “6439 Zetta Hills, Willmouth, WY”? Do they have another address?
