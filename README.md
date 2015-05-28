@@ -134,7 +134,7 @@ we get an array of two addresses.
  #<Address:0x007fe202e61478 id: 42, user_id: 39, street: "83221 Mafalda Canyon", city: "Bahringerland", state: "WY", zip: 24028>]
 `
 originally I had done the find_by method and only located one address.
-I updated it with the following code. I WOULD NOT DO THIS IN THE FUTURE.
+I originally corrected her address with the following code. I WOULD NOT DO THIS IN THE FUTURE.
 
 `
 => #<Address:0x007fae38e33080 id: 39, user_id: 37, street: "7503 Cale Grove", city: "Robertoshire", state: "PA", zip: 49744>
