@@ -136,20 +136,19 @@ we get an array of two addresses.
 originally I had done the find_by method and only located one address.
 I updated it with the following code. I WOULD NOT DO THIS IN THE FUTURE.
 
-# `address = Address
-
-# => #<Address:0x007fae38e33080 id: 39, user_id: 37, street: "7503 Cale Grove", city: "Robertoshire", state: "PA", zip: 49744>
-# [38] pry(main)> address.state = 'NY'
-# => "NY"
-# [39] pry(main)> address.city = 'New York'
-# => "New York"
-# [40] pry(main)> address.zip = 10108
-# => 10108
-# [41] pry(main)> address.save
-# => true
-# [42] pry(main)> Address.find_by(id: 39)
-# => #<Address:0x007fae38d91f00 id: 39, user_id: 37, street: "7503 Cale Grove", city: "New York", state: "NY", zip: 10108>
-# [43] pry(main)>`
+`
+=> #<Address:0x007fae38e33080 id: 39, user_id: 37, street: "7503 Cale Grove", city: "Robertoshire", state: "PA", zip: 49744>
+[38] pry(main)> address.state = 'NY'
+=> "NY"
+[39] pry(main)> address.city = 'New York'
+=> "New York"
+[40] pry(main)> address.zip = 10108
+=> 10108
+[41] pry(main)> address.save
+=> true
+[42] pry(main)> Address.find_by(id: 39)
+=> #<Address:0x007fae38d91f00 id: 39, user_id: 37, street: "7503 Cale Grove", city: "New York", state: "NY", zip: 10108>
+[43] pry(main)>`
 
 Not only was the find_by method not a good way to go about it but that is a
 pretty ineffecient way to update several things at once. It also looks like my
@@ -305,4 +304,8 @@ our results returned
 => #<Order:0x007fcf23035b48 id: nil, user_id: 51, item_id: 89, quantity: 1200, created_at: 2015-05-28 08:41:25 -0400>
 `
 
-we didnt return an id.... hmm...ß
+we didnt return an id.... hmm...
+
+###that's all for now!
+
+
